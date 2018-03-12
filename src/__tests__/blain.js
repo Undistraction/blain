@@ -9,7 +9,7 @@ describe(`blain`, () => {
 
     describe(`configuration`, () => {
       describe(`with invalid values`, () => {
-        const invalidValues = [true, false, [], `a`, 1]
+        const invalidValues = [true, false, [], `a`, 1, null, NaN, new Date()]
         it(`throws`, () => {
           map(value => {
             expect(() => blainConfig(value)).toThrowMultiline(`
@@ -28,7 +28,18 @@ describe(`blain`, () => {
       })
 
       describe(`with invalid values for groups`, () => {
-        const invalidValues = [true, false, [], `a`, 1]
+        const invalidValues = [
+          true,
+          false,
+          [],
+          `a`,
+          1,
+          null,
+          NaN,
+          undefined,
+          /a/,
+          new Date(),
+        ]
         it(`throws`, () => {
           map(value => {
             expect(() => blainConfig({ groups: value })).toThrowMultiline(`
@@ -40,7 +51,18 @@ describe(`blain`, () => {
       })
 
       describe(`with invalid values for baseGroup`, () => {
-        const invalidValues = [true, false, {}, `a`, 1]
+        const invalidValues = [
+          true,
+          false,
+          {},
+          `a`,
+          1,
+          null,
+          NaN,
+          undefined,
+          /a/,
+          new Date(),
+        ]
         it(`throws`, () => {
           map(value => {
             expect(() => blainConfig({ baseGroup: value })).toThrowMultiline(`
@@ -173,11 +195,26 @@ describe(`blain`, () => {
 
       describe(`with custom values`, () => {
         it(`returns the expected values`, () => {
-          const blain = blainConfig()
           const value1 = `value1`
-          const value2 = `value2`
-          const result = blain.include(keys.STRINGS, value1, value2)
-          expect(result).toEqual([...data[keys.STRINGS], value1, value2])
+          const values = [
+            value1,
+            true,
+            false,
+            {},
+            `a`,
+            1,
+            null,
+            NaN,
+            undefined,
+            /a/,
+            new Date(),
+          ]
+          const blain = blainConfig()
+
+          map(value => {
+            const result = blain.include(keys.STRINGS, value)
+            expect(result).toEqual([...data[keys.STRINGS], value])
+          })(values)
         })
       })
     })
@@ -187,26 +224,10 @@ describe(`blain`, () => {
     // -------------------------------------------------------------------------
 
     describe(`exclude()`, () => {
-      describe(`with no config obj`, () => {
+      describe(`with no baseGroup`, () => {
         it(`returns an empty array`, () => {
           const blain = blainConfig()
           const result = blain.exclude(keys.STRINGS)
-          expect(result).toEqual([])
-        })
-      })
-
-      describe(`with empty config obj`, () => {
-        it(`returns an empty array`, () => {
-          const blain = blainConfig({})
-          const result = blain.exclude(keys.STRINGS)
-          expect(result).toEqual([])
-        })
-      })
-
-      describe(`with no args`, () => {
-        it(`returns an empty array`, () => {
-          const blain = blainConfig()
-          const result = blain.exclude()
           expect(result).toEqual([])
         })
       })
