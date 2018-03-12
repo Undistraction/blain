@@ -32,7 +32,7 @@ expect(() => f(value)).Throw(`Supplied value was invalid`)
 
 However, there are often many other unsupported values, and just because the function behaves as expected when encountering `null` doesn't mean it will do the same when encountering a RexExp object or `NaN`.
 
-Blaine makes it easy to get your hands on a wide variety of values to test your functions. It offers a variety of groups out of the box and makes it easy to combine and edit those groups or add your own data.
+Blain makes it easy to get your hands on a wide variety of values to test your functions. It offers a variety of groups out of the box and makes it easy to combine and edit those groups or add your own data.
 
 So using the example above, and assuming the function only supports strings or arrays, we can do:
 
