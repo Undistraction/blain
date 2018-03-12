@@ -9,7 +9,7 @@ Those functions are looking at you funny.
 [![Build Status](https://img.shields.io/travis/Undistraction/blain.svg)](https://travis-ci.org/Undistraction/blain)
 [![DUB](https://img.shields.io/dub/l/vibe-d.svg)](./LICENSE.md)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Undistraction/blain.svg)](https://greenkeeper.io/)
-[![Node Security](https://nodesecurity.io/orgs/undistraction/projects/XXX/badge)](https://nodesecurity.io/orgs/undistraction/projects/XXX)
+[![Node Security](https://nodesecurity.io/orgs/undistraction/projects/4245a5fc-a1e3-42a0-b4d6-2a5d5df1a3c3/badge)](https://nodesecurity.io/orgs/undistraction/projects/4245a5fc-a1e3-42a0-b4d6-2a5d5df1a3c3)
 
 When testing APIs or functions generally you often need to test how they behave when unsupported values are passed in. It can often be tempting to pick a value you know doesn't work and just test that:
 
