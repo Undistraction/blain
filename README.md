@@ -13,7 +13,7 @@ Those functions are looking at you funny.
 
 When testing APIs or functions generally you often need to test how they behave when unsupported values are passed in. It can often be tempting to pick a value you know doesn't work and just test that:
 
-```
+```javascript
 const f = s => {
   if (typeof s === `string`) {
     return `Its a String`

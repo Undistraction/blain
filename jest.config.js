@@ -7,4 +7,5 @@ module.exports = {
   coverageReporters: [`lcov`, `html`],
   setupFiles: [],
   modulePathIgnorePatterns: [`testHelpers/`],
+  setupTestFrameworkScriptFile: `<rootDir>/src/__tests__/testHelpers/matchers/customMatchers.js`,
 }

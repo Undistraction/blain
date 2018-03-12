@@ -1,3 +1,4 @@
+import { map } from 'ramda'
 import blainConfig, { keys, data } from '../index'
 
 describe(`blain`, () => {
@@ -6,20 +7,71 @@ describe(`blain`, () => {
     // Include
     // -------------------------------------------------------------------------
 
-    describe(`include()`, () => {
-      describe(`with no config obj`, () => {
-        it(`returns the supplied values`, () => {
-          const blain = blainConfig()
-          const result = blain.include(keys.STRINGS)
-          expect(result).toEqual(data[keys.STRINGS])
+    describe(`configuration`, () => {
+      describe(`with invalid values`, () => {
+        const invalidValues = [true, false, [], `a`, 1]
+        it(`throws`, () => {
+          map(value => {
+            expect(() => blainConfig(value)).toThrowMultiline(`
+              [blain] () Arguments included invalid value(s)
+                – config: Wasn't Plain Object`)
+          })(invalidValues)
         })
       })
 
-      describe(`with empty config obj`, () => {
-        it(`returns the supplied values`, () => {
-          const blain = blainConfig({})
-          const result = blain.include(keys.STRINGS)
-          expect(result).toEqual(data[keys.STRINGS])
+      describe(`with invalid keys`, () => {
+        it(`throws`, () => {
+          expect(() => blainConfig({ a: 1, b: 2 })).toThrowMultiline(`
+              [blain] () Arguments included invalid value(s)
+                – config: Object included key(s) not on whitelist: ['baseGroup', 'groups']`)
+        })
+      })
+
+      describe(`with invalid values for groups`, () => {
+        const invalidValues = [true, false, [], `a`, 1]
+        it(`throws`, () => {
+          map(value => {
+            expect(() => blainConfig({ groups: value })).toThrowMultiline(`
+              [blain] () Arguments included invalid value(s)
+                – config: Object included invalid value(s)
+                  – groups: Wasn't Plain Object`)
+          })(invalidValues)
+        })
+      })
+
+      describe(`with invalid values for baseGroup`, () => {
+        const invalidValues = [true, false, {}, `a`, 1]
+        it(`throws`, () => {
+          map(value => {
+            expect(() => blainConfig({ baseGroup: value })).toThrowMultiline(`
+              [blain] () Arguments included invalid value(s)
+                – config: Object included invalid value(s)
+                  – baseGroup: Wasn't Array`)
+          })(invalidValues)
+        })
+      })
+    })
+
+    // -------------------------------------------------------------------------
+    // Include
+    // -------------------------------------------------------------------------
+
+    describe(`include()`, () => {
+      describe(`config obj`, () => {
+        describe(`missing`, () => {
+          it(`returns the supplied values`, () => {
+            const blain = blainConfig()
+            const result = blain.include(keys.STRINGS)
+            expect(result).toEqual(data[keys.STRINGS])
+          })
+        })
+
+        describe(`empty`, () => {
+          it(`returns the supplied values`, () => {
+            const blain = blainConfig({})
+            const result = blain.include(keys.STRINGS)
+            expect(result).toEqual(data[keys.STRINGS])
+          })
         })
       })
 
