@@ -6,7 +6,11 @@
     "type": "git",
     "url": "git+https://github.com/Undistraction/blain.git"
   },
-  "files": ["dist", "src", "lib"],
+  "files": [
+    "dist",
+    "src",
+    "lib"
+  ],
   "keywords": [],
   "author": "Pedr Browne",
   "license": "MIT",
@@ -48,18 +52,20 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.15.0-rc.8",
     "jest": "^21.2.1",
+    "nsp": "^3.2.1",
     "prettier": "^1.8.2",
     "rollup": "^0.51.3",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "nsp": "^3.2.1",
-    "husky": "^0.15.0-rc.8"
+    "rollup-plugin-node-resolve": "^3.0.0"
   },
   "dependencies": {
+    "folktale-validations": "2.3.0",
     "ramda": "^0.25.0",
-    "ramda-adjunct": "^2.5.0"
+    "ramda-adjunct": "^2.5.0",
+    "ramda-log": "^0.0.3"
   },
   "husky": {
     "hooks": {
