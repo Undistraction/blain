@@ -11,7 +11,7 @@ Those functions are looking at you funny.
 [![Greenkeeper badge](https://badges.greenkeeper.io/Undistraction/blain.svg)](https://greenkeeper.io/)
 [![Node Security](https://nodesecurity.io/orgs/undistraction/projects/4245a5fc-a1e3-42a0-b4d6-2a5d5df1a3c3/badge)](https://nodesecurity.io/orgs/undistraction/projects/4245a5fc-a1e3-42a0-b4d6-2a5d5df1a3c3)
 
-When testing APIs or functions generally you often need to test how they behave when unsupported values are passed in. It can often be tempting to pick a value you know doesn't work and just test that:
+When testing APIs or functions in general you often need to test how they behave when unsupported values are passed in. It can often be tempting to pick a value you know doesn't work and just test that:
 
 ```javascript
 const f = s => {
@@ -30,7 +30,7 @@ const value = null
 expect(() => f(value)).Throw(`Supplied value was invalid`)
 ```
 
-However, there are often many other unsupported values, and just because the function throws correctly when encountering null doesn't mean it will throw correctly when encountering a RexExp object or `NaN`.
+However, there are often many other unsupported values, and just because the function behaves as expected when encountering `null` doesn't mean it will do the same when encountering a RexExp object or `NaN`.
 
 Blaine makes it easy to get your hands on a wide variety of values to test your functions. It offers a variety of groups out of the box and makes it easy to combine and edit those groups or add your own data.
 
